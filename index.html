@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gian Hàng Ẩm Thực 12 Tin</title>
+    <style>
+        /* 1. Định dạng chung: Dùng duy nhất font Times New Roman, màu nền trang web */
+        * {
+            font-family: "Times New Roman", Times, serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fff8e7; /* Màu nền kem ấm áp */
+            margin: 0;
+            padding: 0;
+            color: #333333;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* Phần đầu trang (Header) */
+        header {
+            background-color: #b71c1c;
+            color: #ffffff;
+            text-align: center;
+            padding: 25px 15px;
+            border-bottom: 5px solid #ffb300;
+        }
+
+        header h1 {
+            font-size: 40px;
+            margin: 0;
+            color: #ffeb3b;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        header p {
+            font-size: 20px;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        /* Thanh điều hướng (Liên kết) */
+        nav {
+            background-color: #ff8f00;
+            text-align: center;
+            padding: 12px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0 15px;
+            padding: 6px 12px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #b71c1c;
+            color: #ffeb3b;
+        }
+
+        /* Khung nội dung chính */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #b71c1c;
+            border-left: 6px solid #ff8f00;
+            padding-left: 12px;
+            background-color: #fff3e0;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        /* Danh sách */
+        .list-section {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .list-box {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f9fbe7;
+            padding: 15px 25px;
+            border: 1px dashed #827717;
+            border-radius: 8px;
+        }
+
+        /* Bảng thực đơn */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 19px;
+        }
+
+        th, td {
+            border: 2px solid #ffcc80;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #e65100;
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fffdf7;
+        }
+
+        tr:hover {
+            background-color: #fff3e0;
+        }
+
+        .food-img {
+            width: 130px;
+            height: 95px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+
+        /* Màu chữ riêng biệt cho từng món ăn */
+        .mon-1 { color: #d32f2f; } /* Đỏ đậm - Bánh tráng trộn */
+        .mon-2 { color: #1b5e20; } /* Xanh lá đậm - Trà sữa Matcha */
+        .mon-3 { color: #6a1b9a; } /* Tím - Khoai lang lắc phô mai */
+        .mon-4 { color: #0d47a1; } /* Xanh dương đậm - Cá viên chiên mắm */
+        .mon-5 { color: #e65100; } /* Cam đậm - Chân gà sả tắc */
+
+        /* Video */
+        .video-box {
+            text-align: center;
+            background-color: #fce4ec;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        /* Biểu mẫu (Form) */
+        .form-container {
+            background-color: #e8f5e9;
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #66bb6a;
+            margin-top: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #1b5e20;
+            font-size: 19px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="url"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #81c784;
+            border-radius: 5px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            font-size: 19px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .btn-submit {
+            background-color: #2e7d32;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: #1b5e20;
+        }
+
+        .btn-reset {
+            background-color: #c62828;
+            color: white;
+        }
+
+        /* Chân trang (Footer) */
+        footer {
+            background-color: #3e2723;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 18px;
+        }
+
+        footer a {
+            color: #ffca28;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PHẦN ĐẦU TRANG -->
+    <header id="dau-trang">
+        <h1>GIAN HÀNG ẨM THỰC LỚP 12 TIN</h1>
+        <p>"Code mượt mà - Ăn cực đã - Giá học sinh!"</p>
+    </header>
+
+    <!-- THANH LIÊN KẾT ĐIỀU HƯỚNG -->
+    <nav>
+        <a href="#gioi-thieu">Giới Thiệu</a>
+        <a href="#thuc-don">Thực Đơn & Bảng Giá</a>
+        <a href="#video">Video Gian Hàng</a>
+        <a href="#cap-nhat">Cập Nhật Món Ăn</a>
+        <a href="#lien-he">Liên Hệ & Chia Sẻ</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- 1. TRÌNH BÀY ĐỊNH DẠNG VĂN BẢN & DANH SÁCH -->
+        <section id="gioi-thieu">
+            <h2>1. Giới Thiệu Gian Hàng 12 Tin</h2>
+            <p>
+                Chào mừng quý thầy cô và các bạn học sinh đến với <b>Gian hàng ẩm thực Lớp 12 Tin</b>!
+                Tại hội trại năm nay, tập thể 12 Tin mang đến những món ăn vặt <i>thơm ngon, hợp vệ sinh</i>
+                với mức giá <mark style="background-color: #ffeb3b; padding: 2px 6px;">siêu ưu đãi dành cho học sinh</mark>.
+                <u>Đặc biệt:</u> Giảm ngay <b>10%</b> cho khách hàng đọc đúng mật khẩu <span style="color: #d32f2f; font-weight: bold;">"12 TIN VÔ ĐỊCH"</span>!
+            </p>
+
+            <div class="list-section">
+                <!-- Danh sách không thứ tự (ul) -->
+                <div class="list-box">
+                    <h3 style="color: #33691e; margin-top: 0;">Tiêu chí của gian hàng (Danh sách ul):</h3>
+                    <ul>
+                        <li>Nguyên liệu tươi sạch, có nguồn gốc rõ ràng.</li>
+                        <li>Chế biến trực tiếp, đảm bảo an toàn thực phẩm.</li>
+                        <li>Phục vụ nhanh chóng, nhiệt tình, vui vẻ.</li>
+                        <li>Hỗ trợ thanh toán tiền mặt và chuyển khoản QR.</li>
+                    </ul>
+                </div>
+
+                <!-- Danh sách có thứ tự (ol) -->
+                <div class="list-box">
+                    <h3 style="color: #e65100; margin-top: 0;">Top 3 Combo bán chạy nhất (Danh sách ol):</h3>
+                    <ol>
+                        <li><b>Combo Tinh Thông:</b> Bánh tráng trộn + Trà sữa Matcha (30.000đ).</li>
+                        <li><b>Combo Lập Trình:</b> Cá viên chiên + Khoai lang lắc (35.000đ).</li>
+                        <li><b>Combo Full-Stack:</b> Đủ 5 món đặc trưng của lớp (99.000đ).</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. BẢNG THỰC ĐƠN (MỖI MÓN MỘT MÀU CHỮ + HÌNH ẢNH MINH HỌA) -->
+        <section id="thuc-don">
+            <h2>2. Thực Đơn Món Ăn (Mỗi Món Một Màu Sắc Riêng)</h2>
+            <p>Dưới đây là danh sách các món ăn hiện có tại gian hàng. Bạn có thể dùng biểu mẫu ở mục 4 để thêm hoặc cập nhật món mới vào bảng này:</p>
+
+            <table id="bang-mon-an">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên Món Ăn</th>
+                        <th>Hình Ảnh Minh Họa</th>
+                        <th>Phân Loại</th>
+                        <th>Mô Tả Hương Vị</th>
+                        <th>Giá Bán (VNĐ)</th>
+                        <th>Trạng Thái</th>
+                    </tr>
+                </thead>
+                <tbody id="danh-sach-mon">
+                    <!-- Món 1: Màu Đỏ Đậm -->
+                    <tr class="mon-1">
+                        <td>1</td>
+                        <td><b>Bánh Tráng Trộn 12 Tin</b></td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=300&q=80" alt="Bánh tráng trộn" class="food-img">
+                        </td>
+                        <td>Ăn vặt</td>
+                        <td>Bánh tráng dẻo, bò khô, trứng cút, xoài chua ngọt</td>
+                        <td><b>15.000đ</b></td>
+                        <td>Còn hàng</td>
+                    </tr>
+
+                    <!-- Món 2: Màu Xanh Lá Đậm -->
+                    <tr class="mon-2">
+                        <td>2</td>
+                        <td><b>Trà Sữa Matcha Trân Châu</b></td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=300&q=80" alt="Trà sữa Matcha" class="food-img">
+                        </td>
+                        <td>Thức uống</td>
+                        <td>Vị trà xanh Nhật Bản thơm béo kèm trân châu đường đen</td>
+                        <td><b>20.000đ</b></td>
+                        <td>Còn hàng</td>
+                    </tr>
+
+                    <!-- Món 3: Màu Tím -->
+                    <tr class="mon-3">
+                        <td>3</td>
+                        <td><b>Khoai Lang Lắc Phô Mai</b></td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=300&q=80" alt="Khoai lang lắc" class="food-img">
+                        </td>
+                        <td>Ăn vặt</td>
+                        <td>Khoai chiên giòn rụm phủ bột phô mai mặn ngọt</td>
+                        <td><b>20.000đ</b></td>
+                        <td>Còn hàng</td>
+                    </tr>
+
+                    <!-- Món 4: Màu Xanh Dương Đậm -->
+                    <tr class="mon-4">
+                        <td>4</td>
+                        <td><b>Cá Viên Chiên Nước Mắm</b></td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=300&q=80" alt="Cá viên chiên" class="food-img">
+                        </td>
+                        <td>Món nóng</td>
+                        <td>Cá viên, bò viên, xúc xích sốt mắm tỏi ớt đậm đà</td>
+                        <td><b>25.000đ</b></td>
+                        <td>Còn hàng</td>
+                    </tr>
+
+                    <!-- Món 5: Màu Cam Đậm -->
+                    <tr class="mon-5">
+                        <td>5</td>
+                        <td><b>Chân Gà Sả Tắc Chua Ngọt</b></td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=300&q=80" alt="Chân gà sả tắc" class="food-img">
+                        </td>
+                        <td>Ăn vặt</td>
+                        <td>Chân gà rút xương giòn sần sật ngâm sả tắc xoài non</td>
+                        <td><b>30.000đ</b></td>
+                        <td>Còn hàng</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 3. CHÈN VIDEO MINH HỌA -->
+        <section id="video">
+            <h2>3. Video Không Khí Chế Biến Tại Gian Hàng</h2>
+            <div class="video-box">
+                <p style="color: #880e4f; font-size: 20px; font-weight: bold;">
+                    Video giới thiệu quy trình chuẩn bị món ăn của đầu bếp 12 Tin:
+                </p>
+                <video width="650" height="360" controls style="max-width: 100%; border: 3px solid #ad1457; border-radius: 8px;">
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ thẻ video.
+                </video>
+                <p>
+                    <i>(Bạn có thể thay đường dẫn file <code>.mp4</code> của lớp vào thuộc tính <code>src</code> hoặc xem thêm trên
+                    <a href="https://www.youtube.com" target="_blank" style="color: #d32f2f; font-weight: bold;">Kênh YouTube Lớp 12 Tin</a>)</i>
+                </p>
+            </div>
+        </section>
+
+        <!-- 4. BIỂU MẪU CẬP NHẬT & XEM THÔNG TIN MÓN ĂN -->
+        <section id="cap-nhat">
+            <h2>4. Biểu Mẫu Cập Nhật & Xem Thông Tin Món Ăn</h2>
+            <p>Sử dụng biểu mẫu dưới đây để <b>thêm món ăn mới</b> hoặc <b>cập nhật thông tin món ăn</b> (tự chọn màu chữ riêng và ảnh minh họa). Khi nhấn nút, món ăn sẽ hiển thị ngay vào bảng thực đơn phía trên!</p>
+
+            <div class="form-container">
+                <form id="form-mon-an" onsubmit="capNhatMonAn(event)">
+                    <div class="form-group">
+                        <label for="ten-mon">Tên món ăn (*):</label>
+                        <input type="text" id="ten-mon" name="ten-mon" placeholder="Nhập tên món (VD: Xoài lắc muối ớt)..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phan-loai">Phân loại món ăn:</label>
+                        <select id="phan-loai" name="phan-loai">
+                            <option value="Ăn vặt">Ăn vặt</option>
+                            <option value="Thức uống">Thức uống</option>
+                            <option value="Món nóng">Món nóng</option>
+                            <option value="Tráng miệng">Tráng miệng</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gia-ban">Giá bán (VNĐ) (*):</label>
+                        <input type="number" id="gia-ban" name="gia-ban" placeholder="VD: 20000" min="1000" step="1000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mau-chu">Chọn màu chữ riêng cho món ăn này:</label>
+                        <input type="color" id="mau-chu" name="mau-chu" value="#00838f" style="width: 100px; height: 40px; cursor: pointer;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="link-anh">Đường dẫn (URL) hình ảnh minh họa:</label>
+                        <input type="url" id="link-anh" name="link-anh" placeholder="Dán link ảnh hoặc để trống để dùng ảnh mặc định">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mo-ta">Mô tả hương vị món ăn (*):</label>
+                        <textarea id="mo-ta" name="mo-ta" rows="3" placeholder="Nhập mô tả chi tiết cho món ăn..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Trạng thái phục vụ:</label>
+                        <input type="radio" id="con-hang" name="trang-thai" value="Còn hàng" checked>
+                        <label for="con-hang" style="display: inline; font-weight: normal; margin-right: 20px;">Còn hàng</label>
+
+                        <input type="radio" id="het-hang" name="trang-thai" value="Tạm hết">
+                        <label for="het-hang" style="display: inline; font-weight: normal;">Tạm hết</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit">Cập Nhật Vào Thực Đơn</button>
+                    <button type="reset" class="btn btn-reset">Nhập Lại</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- CHÂN TRANG & LIÊN KẾT CHIA SẺ -->
+    <footer id="lien-he">
+        <p><b>BẢN QUYỀN THUỘC VỀ TẬP THỂ LỚP 12 TIN - NĂM HỌC 2025 - 2026</b></p>
+        <p>Địa chỉ gian hàng: Khu vực Sân trường trung tâm (Cạnh gốc phượng vĩ)</p>
+        <p>
+            Liên kết nhanh:
+            <a href="#dau-trang">Lên đầu trang</a> |
+            <a href="https://facebook.com" target="_blank">Fanpage Lớp 12 Tin</a> |
+            <a href="mailto:12tin@school.edu.vn">Gửi Email Đặt Hàng</a>
+        </p>
+    </footer>
+
+    <!-- ĐOẠN SCRIPT HỖ TRỢ CẬP NHẬT & XEM THÔNG TIN TRỰC TIẾP TRÊN BẢNG -->
+    <script>
+        function capNhatMonAn(event) {
+            event.preventDefault(); // Ngăn trang tải lại để xem kết quả ngay
+
+            // Lấy dữ liệu từ biểu mẫu
+            var tenMon = document.getElementById("ten-mon").value.trim();
+            var phanLoai = document.getElementById("phan-loai").value;
+            var giaBan = Number(document.getElementById("gia-ban").value).toLocaleString("vi-VN") + "đ";
+            var mauChu = document.getElementById("mau-chu").value;
+            var linkAnh = document.getElementById("link-anh").value.trim();
+            var moTa = document.getElementById("mo-ta").value.trim();
+            var trangThai = document.querySelector('input[name="trang-thai"]:checked').value;
+
+            // Nếu người dùng không nhập link ảnh thì lấy ảnh minh họa mặc định
+            if (linkAnh === "") {
+                linkAnh = "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80";
+            }
+
+            var tbody = document.getElementById("danh-sach-mon");
+            var cacDong = tbody.getElementsByTagName("tr");
+            var daCapNhat = false;
+
+            // Kiểm tra nếu trùng tên món ăn đã có thì cập nhật thông tin món đó
+            for (var i = 0; i < cacDong.length; i++) {
+                var tenHienTai = cacDong[i].cells[1].innerText.trim().toLowerCase();
+                if (tenHienTai === tenMon.toLowerCase()) {
+                    cacDong[i].style.color = mauChu;
+                    cacDong[i].cells[2].innerHTML = '<img src="' + linkAnh + '" alt="' + tenMon + '" class="food-img">';
+                    cacDong[i].cells[3].innerText = phanLoai;
+                    cacDong[i].cells[4].innerText = moTa;
+                    cacDong[i].cells[5].innerHTML = "<b>" + giaBan + "</b>";
+                    cacDong[i].cells[6].innerText = trangThai;
+                    daCapNhat = true;
+                    alert("Đã cập nhật thông tin món '" + tenMon + "' thành công!");
+                    break;
+                }
+            }
+
+            // Nếu là món mới thì thêm dòng mới vào bảng
+            if (!daCapNhat) {
+                var sttMoi = cacDong.length + 1;
+                var dongMoi = tbody.insertRow();
+                dongMoi.style.color = mauChu; // Áp dụng màu chữ riêng cho món mới
+
+                dongMoi.innerHTML = `
+                    <td>${sttMoi}</td>
+                    <td><b>${tenMon}</b></td>
+                    <td><img src="${linkAnh}" alt="${tenMon}" class="food-img"></td>
+                    <td>${phanLoai}</td>
+                    <td>${moTa}</td>
+                    <td><b>${giaBan}</b></td>
+                    <td>${trangThai}</td>
+                `;
+                alert("Đã thêm món mới '" + tenMon + "' vào thực đơn!");
+            }
+
+            // Cuộn màn hình lên bảng thực đơn để xem kết quả
+            document.getElementById("thuc-don").scrollIntoView({ behavior: "smooth" });
+            document.getElementById("form-mon-an").reset();
+        }
+    </script>
+
+</body>
+</html>
